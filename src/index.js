@@ -4,7 +4,7 @@ import simpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const form = document.querySelector('.search-form');
-const fetchButton = document.querySelector('.load');
+const fetchButton = document.querySelector('.search-button');
 const gallery = document.querySelector('.gallery');
 const keyApi = '42511097-6652c7dec9d248f72a6de25eb';
 
@@ -112,7 +112,7 @@ form.addEventListener('submit', async e => {
       Notiflix.Notify.success(`Hooray! We found ${dataHits} images.`);
     } else {
       fetchButton.classList.remove('hidden');
-      const dataHits = photos.totalHits;
+      const dataHits = images.totalHits;
       Notiflix.Notify.success(`Hooray! We found ${dataHits} images.`);
     }
   } catch (error) {
