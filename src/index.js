@@ -53,16 +53,16 @@ function galleryPhotos(data, append = false) {
     <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" /></a>
     <div class="info">
       <p class="info-item">
-        <b>Likes: ${likes}</b>
+        <b>Likes ${likes}</b>
       </p>
       <p class="info-item">
-        <b>Views: ${views}</b>
+        <b>Views ${views}</b>
       </p>
       <p class="info-item">
-        <b>Comments: ${comments}</b>
+        <b>Comments ${comments}</b>
       </p>
       <p class="info-item">
-        <b>Downloads: ${downloads}</b>
+        <b>Downloads ${downloads}</b>
       </p>
     </div>
   </div>`
@@ -111,7 +111,7 @@ form.addEventListener('submit', async e => {
       const dataHits = images.totalHits;
       Notiflix.Notify.success(`Hooray! We found ${dataHits} images.`);
     } else {
-      fetchBtn.classList.remove('hidden');
+      fetchButton.classList.remove('hidden');
       const dataHits = photos.totalHits;
       Notiflix.Notify.success(`Hooray! We found ${dataHits} images.`);
     }

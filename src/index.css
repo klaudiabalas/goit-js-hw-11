@@ -1,0 +1,68 @@
+body {
+  display: block;
+  text-align: center;
+  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+}
+
+.header {
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-style: oblique;
+  color: #8b1381;
+}
+
+.input-field {
+  border-radius: 10px;
+  border-color: black;
+  width: 20%;
+  height: 30px;
+}
+
+.search-button {
+  height: 30px;
+  width: 100px;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  cursor: pointer;
+  background-color: #e07cd7;
+  border: none;
+  border-radius: 4px;
+  margin-left: 24px;
+  fill: #ffffff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+.photo-card {
+  max-width: 350px;
+  background-color: #d2c4cf;
+  border-radius: 10px;
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
+.gallery__image {
+  max-width: 350px;
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
+.info {
+  max-width: 300px;
+  margin: 30px;
+  display: flex;
+  gap: 15px;
+}
