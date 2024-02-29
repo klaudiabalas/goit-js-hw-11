@@ -125,7 +125,6 @@ const loadMorePhotos = async () => {
   const images = await fetchPhotos(currentQuery, page);
 
   galleryPhotos(images);
-
   const newPhotosCount =
     document.querySelectorAll('.photo-card').length - previousPhotosCount;
 
