@@ -10,9 +10,8 @@ const keyApi = '42511097-6652c7dec9d248f72a6de25eb';
 
 let page = 1;
 let currentQuery = '';
-let displayImages = 0;
+let totalHits = 0;
 let lightbox;
-let perPage = 40;
 
 const searchParams = new URLSearchParams({
   key: keyApi,
@@ -21,7 +20,7 @@ const searchParams = new URLSearchParams({
   orientation: 'horizontal',
   safesearch: true,
   page: page,
-  per_page: perPage,
+  per_page: 40,
 });
 
 const fetchPhotos = async () => {
@@ -74,6 +73,7 @@ function galleryPhotos(data, append = false) {
     } else {
       gallery.innerHTML = markup;
     }
+
     lightbox = new simpleLightbox('.gallery a');
 
     const { height: cardHeight } = document
@@ -102,19 +102,20 @@ form.addEventListener('submit', async e => {
 
   try {
     const images = await fetchPhotos(form, page);
-    totalHits = images.hits;
+    totalHits = images.totalHits;
     galleryPhotos(images);
 
     if (images.hits.length === 0) {
       fetchButton.classList.add('hidden');
+      Notiflix.Notify.info(
+        "We're sorry, but you've reached the end of search results."
+      );
     } else if (images.hits.length < 40) {
       fetchButton.classList.add('hidden');
-      dataHits = images.totalHits;
-      Notiflix.Notify.success(`Hooray! We found ${dataHits} images.`);
+      Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
     } else {
       fetchButton.classList.remove('hidden');
-      dataHits = images.totalHits;
-      Notiflix.Notify.success(`Hooray! We found ${dataHits} images.`);
+      Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
     }
   } catch (error) {
     Notiflix.Notify.failure(`ERROR: ${error}`);
