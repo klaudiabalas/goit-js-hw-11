@@ -4,7 +4,7 @@ import simpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const form = document.querySelector('.search-form');
-const fetchButton = document.querySelector('.search-button');
+const fetchButton = document.querySelector('.load-more');
 const gallery = document.querySelector('.gallery');
 const keyApi = '42511097-6652c7dec9d248f72a6de25eb';
 
@@ -75,6 +75,7 @@ function galleryPhotos(data, append = false) {
       gallery.innerHTML = markup;
     }
     lightbox = new simpleLightbox('.gallery a');
+
     const { height: cardHeight } = document
       .querySelector('.gallery')
       .firstElementChild.getBoundingClientRect();
@@ -108,12 +109,10 @@ form.addEventListener('submit', async e => {
       fetchButton.classList.add('hidden');
     } else if (images.hits.length < 40) {
       fetchButton.classList.add('hidden');
-      const dataHits = images.totalHits;
-      Notiflix.Notify.success(`Hooray! We found ${dataHits} images.`);
+      Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
     } else {
       fetchButton.classList.remove('hidden');
-      const dataHits = images.totalHits;
-      Notiflix.Notify.success(`Hooray! We found ${dataHits} images.`);
+      Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
     }
   } catch (error) {
     Notiflix.Notify.failure(`ERROR: ${error}`);
