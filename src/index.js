@@ -107,14 +107,11 @@ form.addEventListener('submit', async e => {
 
     if (images.hits.length === 0) {
       fetchButton.classList.add('hidden');
-      Notiflix.Notify.info(
-        "We're sorry, but you've reached the end of search results."
-      );
     } else if (images.hits.length < 40) {
       fetchButton.classList.add('hidden');
       Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
     } else {
-      fetchButton.classList.remove('hidden');
+      fetchButton.classList.add('hidden');
       Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
     }
   } catch (error) {
@@ -122,27 +119,28 @@ form.addEventListener('submit', async e => {
   }
 });
 
-fetchButton.addEventListener('click', async () => {
+const loadMorePhotos = async () => {
   ++page;
-  try {
-    const images = await fetchPhotos();
-    galleryPhotos(images, true);
-    loadPhotos(images.hits.lenght);
-    if (images.hits.lenght === 0) {
-      fetchButton.classList.add('hidden');
-    }
-  } catch (error) {
-    Notiflix.Notify.failure(`Error: ${error}`);
-  }
-});
+  const previousPhotosCount = document.querySelectorAll('.photo-card').length;
+  const images = await fetchPhotos(currentQuery, page);
 
-function loadPhotos() {
-  if (page * 40 >= totalHits) {
-    fetchButton.classList.add('hidden');
-    Notiflix.Notify.failure(
+  galleryPhotos(images);
+
+  const newPhotosCount =
+    document.querySelectorAll('.photo-card').length - previousPhotosCount;
+
+  totalHits + -newPhotosCount;
+
+  if (images.length < 40) {
+    fetchButton.style.display = 'none';
+    Notiflix.Notify.info(
       "We're sorry, but you've reached the end of search results."
     );
   } else {
-    fetchButton.classList.remove('hidden');
+    fetchButton.style.display = 'block';
   }
-}
+
+  Notiflix.Notify.success(`${totalHits} images loaded.`);
+};
+
+fetchButton.addEventListener('click', loadMorePhotos);
