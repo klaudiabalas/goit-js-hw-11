@@ -102,17 +102,19 @@ form.addEventListener('submit', async e => {
 
   try {
     const images = await fetchPhotos(form, page);
-    totalHits = images.totalHits;
+    totalHits = images.hits;
     galleryPhotos(images);
 
     if (images.hits.length === 0) {
       fetchButton.classList.add('hidden');
     } else if (images.hits.length < 40) {
       fetchButton.classList.add('hidden');
-      Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
+      dataHits = images.totalHits;
+      Notiflix.Notify.success(`Hooray! We found ${dataHits} images.`);
     } else {
       fetchButton.classList.remove('hidden');
-      Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
+      dataHits = images.totalHits;
+      Notiflix.Notify.success(`Hooray! We found ${dataHits} images.`);
     }
   } catch (error) {
     Notiflix.Notify.failure(`ERROR: ${error}`);
