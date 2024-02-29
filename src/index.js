@@ -106,12 +106,12 @@ form.addEventListener('submit', async e => {
     galleryPhotos(images);
 
     if (images.hits.length === 0) {
-      fetchButton.classList.add('hidden');
+      fetchButton.style.display = 'none';
     } else if (images.hits.length < 40) {
-      fetchButton.classList.add('hidden');
+      fetchButton.style.display = 'none';
       Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
     } else {
-      fetchButton.classList.remove('hidden');
+      fetchButton.style.display = 'block';
       Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
     }
   } catch (error) {
