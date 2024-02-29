@@ -111,7 +111,7 @@ form.addEventListener('submit', async e => {
       fetchButton.classList.add('hidden');
       Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
     } else {
-      fetchButton.classList.add('hidden');
+      fetchButton.classList.remove('hidden');
       Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
     }
   } catch (error) {
